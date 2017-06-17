@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LigneDevisEditDlg" widgetVar="LigneDevisEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLigneDevisTitle}">
+            <h:form id="LigneDevisEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ligneDevisController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLigneDevisLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{ligneDevisController.selected.id}" title="#{bundle.EditLigneDevisTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditLigneDevisLabel_tva}" for="tva" />
+                        <p:inputText id="tva" value="#{ligneDevisController.selected.tva}" title="#{bundle.EditLigneDevisTitle_tva}" />
+                        <p:outputLabel value="#{bundle.EditLigneDevisLabel_qte}" for="qte" />
+                        <p:inputText id="qte" value="#{ligneDevisController.selected.qte}" title="#{bundle.EditLigneDevisTitle_qte}" />
+                        <p:outputLabel value="#{bundle.EditLigneDevisLabel_devis}" for="devis" />
+                        <p:selectOneMenu id="devis" value="#{ligneDevisController.selected.devis}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{devisController.itemsAvailableSelectOne}"
+                                           var="devisItem"
+                                           itemValue="#{devisItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLigneDevisLabel_article}" for="article" />
+                        <p:selectOneMenu id="article" value="#{ligneDevisController.selected.article}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{articleController.itemsAvailableSelectOne}"
+                                           var="articleItem"
+                                           itemValue="#{articleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLigneDevisLabel_prixTTC}" for="prixTTC" />
+                        <p:inputText id="prixTTC" value="#{ligneDevisController.selected.prixTTC}" title="#{bundle.EditLigneDevisTitle_prixTTC}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ligneDevisController.update}" value="#{bundle.Save}" update="display,:LigneDevisListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LigneDevisEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LigneDevisEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

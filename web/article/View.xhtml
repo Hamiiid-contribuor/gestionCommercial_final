@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ArticleViewDlg" widgetVar="ArticleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewArticleTitle}">
+            <h:form id="ArticleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{articleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewArticleLabel_reference}"/>
+                        <h:outputText value="#{articleController.selected.reference}" title="#{bundle.ViewArticleTitle_reference}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_designation}"/>
+                        <h:outputText value="#{articleController.selected.designation}" title="#{bundle.ViewArticleTitle_designation}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_description}"/>
+                        <h:outputText value="#{articleController.selected.description}" title="#{bundle.ViewArticleTitle_description}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_prixHT}"/>
+                        <h:outputText value="#{articleController.selected.prixHT}" title="#{bundle.ViewArticleTitle_prixHT}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_tva}"/>
+                        <h:outputText value="#{articleController.selected.tva}" title="#{bundle.ViewArticleTitle_tva}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_prixTTC}"/>
+                        <h:outputText value="#{articleController.selected.prixTTC}" title="#{bundle.ViewArticleTitle_prixTTC}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_qteStock}"/>
+                        <h:outputText value="#{articleController.selected.qteStock}" title="#{bundle.ViewArticleTitle_qteStock}"/>
+                        <h:outputText value="#{bundle.ViewArticleLabel_seuilAlert}"/>
+                        <h:outputText value="#{articleController.selected.seuilAlert}" title="#{bundle.ViewArticleTitle_seuilAlert}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ArticleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

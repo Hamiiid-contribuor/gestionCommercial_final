@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LigneDevisCreateDlg" widgetVar="LigneDevisCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLigneDevisTitle}">
+            <h:form id="LigneDevisCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{ligneDevisController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLigneDevisLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{ligneDevisController.selected.id}" title="#{bundle.CreateLigneDevisTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateLigneDevisLabel_tva}" for="tva" />
+                        <p:inputText id="tva" value="#{ligneDevisController.selected.tva}" title="#{bundle.CreateLigneDevisTitle_tva}" />
+                        <p:outputLabel value="#{bundle.CreateLigneDevisLabel_qte}" for="qte" />
+                        <p:inputText id="qte" value="#{ligneDevisController.selected.qte}" title="#{bundle.CreateLigneDevisTitle_qte}" />
+                        <p:outputLabel value="#{bundle.CreateLigneDevisLabel_devis}" for="devis" />
+                        <p:selectOneMenu id="devis" value="#{ligneDevisController.selected.devis}" >
+                            <f:selectItems value="#{devisController.itemsAvailableSelectOne}"
+                                           var="devisItem"
+                                           itemValue="#{devisItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLigneDevisLabel_article}" for="article" />
+                        <p:selectOneMenu id="article" value="#{ligneDevisController.selected.article}" >
+                            <f:selectItems value="#{articleController.itemsAvailableSelectOne}"
+                                           var="articleItem"
+                                           itemValue="#{articleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLigneDevisLabel_prixTTC}" for="prixTTC" />
+                        <p:inputText id="prixTTC" value="#{ligneDevisController.selected.prixTTC}" title="#{bundle.CreateLigneDevisTitle_prixTTC}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ligneDevisController.create}" value="#{bundle.Save}" update="display,:LigneDevisListForm:datalist,:growl" oncomplete="handleSubmit(args,'LigneDevisCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LigneDevisCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

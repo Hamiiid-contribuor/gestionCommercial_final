@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DevisViewDlg" widgetVar="DevisViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDevisTitle}">
+            <h:form id="DevisViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{devisController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDevisLabel_reference}"/>
+                        <h:outputText value="#{devisController.selected.reference}" title="#{bundle.ViewDevisTitle_reference}"/>
+                        <h:outputText value="#{bundle.ViewDevisLabel_dateDevis}"/>
+                        <h:outputText value="#{devisController.selected.dateDevis}" title="#{bundle.ViewDevisTitle_dateDevis}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDevisLabel_client}"/>
+                        <h:outputText value="#{devisController.selected.client}" title="#{bundle.ViewDevisTitle_client}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DevisViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
